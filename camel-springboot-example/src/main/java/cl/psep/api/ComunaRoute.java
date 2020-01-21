@@ -7,6 +7,10 @@ import org.apache.camel.model.rest.RestBindingMode;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import cl.psep.api.model.Comuna;
+import cl.psep.api.model.Provincia;
+import cl.psep.api.model.Region;
+
 @Component("comuna-route")
 public class ComunaRoute extends RouteBuilder {
 	
@@ -32,9 +36,27 @@ public class ComunaRoute extends RouteBuilder {
 			.get()
 				.description("Lista todas las comunas")
 				.produces(MediaType.APPLICATION_JSON)
+				.outType(Comuna[].class)
 				.route()
 					.to("jpa://cl.psep.api.model.Comuna?namedQuery=Comuna.findAll&consumeDelete=false")
-					//.setBody(simple("asdasd"))
+		.endRest();
+		
+		rest("/provincias").description("Servicio de provincias")
+			.get()
+				.description("Lista todas las provincias")
+				.produces(MediaType.APPLICATION_JSON)
+				.outType(Provincia[].class)
+				.route()
+					.to("jpa://cl.psep.api.model.Provincia?namedQuery=Provincia.findAll&consumeDelete=false")
+		.endRest();
+		
+		rest("/regiones").description("Servicios de regiones")
+			.get()
+				.description("Lista todas las regiones")
+				.produces(MediaType.APPLICATION_JSON)
+				.outType(Region[].class)
+				.route()
+					.to("jpa://cl.psep.api.model.Region?namedQuery=Region.findAll&consumeDelete=false")
 		.endRest();
 	}
 

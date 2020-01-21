@@ -12,9 +12,12 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "COMUNA")
 @NamedQueries({ @NamedQuery(name = "Comuna.findAll", query = "SELECT c FROM Comuna c") })
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
 public class Comuna implements Serializable {
 
 	/**

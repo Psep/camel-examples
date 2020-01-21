@@ -9,15 +9,16 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * @author psepulvedap
  *
  */
 @Entity
-@Table(name = "Region")
-@NamedQueries({
-	@NamedQuery(name = "Region.findAll", query = "SELECT r FROM Region r")
-})
+@Table(name = "REGION")
+@NamedQueries({ @NamedQuery(name = "Region.findAll", query = "SELECT r FROM Region r") })
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
 public class Region implements Serializable {
 
 	/**
@@ -26,13 +27,13 @@ public class Region implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "id")
+	@Column(name = "ID")
 	private Integer id;
 
-	@Column(name = "nombre")
+	@Column(name = "NOMBRE")
 	private String nombre;
 
-	@Column(name = "codIso")
+	@Column(name = "CODISO")
 	private String codIso;
 
 	public Integer getId() {

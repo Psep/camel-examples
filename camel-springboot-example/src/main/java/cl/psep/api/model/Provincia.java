@@ -12,9 +12,12 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
-@Table(name = "Provincia")
+@Table(name = "PROVINCIA")
 @NamedQueries({ @NamedQuery(name = "Provincia.findAll", query = "SELECT p FROM Provincia p") })
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
 public class Provincia implements Serializable {
 
 	/**
@@ -23,14 +26,14 @@ public class Provincia implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "id")
+	@Column(name = "ID")
 	private Integer id;
 
-	@Column(name = "nombre")
+	@Column(name = "NOMBRE")
 	private String nombre;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idRegion")
+	@JoinColumn(name = "IDREGION")
 	private Region region;
 
 	public Integer getId() {
